@@ -1,75 +1,94 @@
-# Chatter Wave - Backend
+# Chatterwave - API Server (Java)
 
-This is the official backend server for the Chatter Wave mobile application. It is built with Java EE and provides a robust RESTful API to handle user authentication, real-time messaging, and data persistence.
+<p align="center">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg"/>
+  <img alt="Language" src="https://img.shields.io/badge/Language-Java%20(EE7)-orange.svg?logo=java"/>
+  <img alt="Database" src="https://img.shields.io/badge/Database-MySQL%208-blue.svg?logo=mysql"/>
+</p>
 
-**Note:** This server is a required component for the [Chatter Wave Mobile App (Frontend)](https://github.com/your-username/chatter-wave-frontend-repo) to function correctly.
+This is the backend server for the **Chatterwave** chat application. It's built on the Java EE 7 platform and provides a complete RESTful API for all application functionalities, including user management, authentication, and messaging.
 
-## Core Responsibilities
+⬅️ **View Frontend Repository:** [**Chatterwave-Frontend (React Native)**](https://github.com/manujayagunathilaka/ChatterWave-Front-End)
 
-* Manages user registration and authentication.
-* Handles the sending and receiving of chat messages.
-* Persists all user and chat data in a MySQL database.
-* Provides API endpoints for all client-side operations.
-
-## Technology Stack
-
-* [cite_start]**Language:** Java (Java EE 7) [cite: 3]
-* [cite_start]**ORM Framework:** Hibernate [cite: 7]
-* [cite_start]**Database:** MySQL 8 [cite: 5]
-* [cite_start]**JSON Library:** Gson [cite: 8]
-* **Development Tunneling:** Ngrok
+<br/>
 
 ## Database Schema
 
-[cite_start]The application relies on a MySQL database named `smart_chat`[cite: 2]. The relational schema is designed to efficiently manage users, messages, and their statuses.
+The application uses a MySQL 8 database named `chatterwave`. The relational schema is designed to efficiently manage users, chats, and their statuses.
 
-![Database ER Diagram](https://i.imgur.com/L1ZzjvS.png)
+![Database ERD for Chatterwave](./docs/database-schema.png)
 
-## API Endpoints
+<br/>
 
-The following are the base endpoints provided by the API. (Please refer to the source code for detailed request/response structures).
+## Key Features
 
-* `POST /api/users/register` - Register a new user.
-* `POST /api/users/login` - Authenticate a user.
-* `GET /api/users/{id}` - Get user details.
-* `GET /api/chats/{userId1}/{userId2}` - Retrieve chat history between two users.
-* `POST /api/chats/send` - Send a new message.
+* **RESTful API:** A well-defined API for all client-server communication.
+* **User Management:** Handles user registration, login, profile data, and status updates.
+* **User Status Management:** Tracks and manages user online/offline statuses in real-time.
+* **Messaging Service:** Manages sending, receiving, and retrieving chat messages between users.
+* **ORM Integration:** Uses Hibernate for efficient and reliable database operations.
+* **JSON Serialization:** Utilizes the Gson library for robust JSON handling.
+
+<br/>
+
+## Technology Stack
+
+* **Language/Platform:** Java (Java EE 7)
+* **Application Server:** GlassFish
+* **Database:** MySQL 8
+* **ORM:** Hibernate
+* **JSON Library:** Gson
+* **Build Tool:** Apache Maven
+
+<br/>
 
 ## Getting Started
 
-Follow these instructions to get a local instance of the backend server up and running.
+Follow these instructions to set up and run the backend server on your local machine.
+
 
 ### Prerequisites
 
-* Java Development Kit (JDK) 8 or higher
-* Apache Tomcat or a similar servlet container
-* MySQL Server
+* JDK (Java Development Kit) 8 or higher
+* Apache Maven
+* GlassFish Server
+* MySQL 8 Server
 
-### Installation and Setup
 
-1.  **Clone the repository:**
-    ```sh
-    git clone [https://github.com/your-username/chatter-wave-backend-repo.git](https://github.com/your-username/chatter-wave-backend-repo.git)
-    cd chatter-wave-backend-repo
+### Installation & Setup
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone [https://github.com/your-username/Chatterwave-Backend.git](https://github.com/your-username/Chatterwave-Backend.git)
+    cd Chatterwave-Backend
     ```
 
-2.  **Database Configuration:**
+2.  **Database Setup:**
     * Ensure your MySQL server is running.
-    * [cite_start]Create a new database named `smart_chat`. [cite: 2]
-    * Execute the necessary SQL scripts to create the `user`, `chat`, `user_status`, and `chat_status` tables as per the schema.
+    * Create a new database with the name `chatterwave`.
+    * Open the Hibernate configuration file (`hibernate.cfg.xml` or `persistence.xml`) and update the database connection details (URL, username, password) to match your local MySQL setup.
 
-3.  **Hibernate Configuration:**
-    * [cite_start]Open the `hibernate.cfg.xml` file. [cite: 10]
-    * Update the database connection properties (URL, username, password) to match your local MySQL setup.
+3.  **Build the Project:**
+    Use Maven to compile the source code and package it into a `.war` file.
+    ```bash
+    mvn clean install
+    ```
 
-4.  **Build and Deploy:**
-    * Build the project into a `.war` file using your preferred build tool (e.g., Maven, Gradle).
-    * Deploy the generated `.war` file to your servlet container (e.g., copy to Tomcat's `webapps` directory).
+4.  **Deploy to GlassFish:**
+    * Start your GlassFish server.
+    * Locate the generated `.war` file inside the `target/` directory of your project.
+    * Deploy this `.war` file to your GlassFish server using the admin console or by copying it to the `autodeploy` directory.
 
-5.  **Run the Server:**
-    * Start your servlet container. The server should now be running locally.
-    * For mobile client testing, use a tool like Ngrok to expose your local server to the internet.
+5.  **Expose with Ngrok:**
+    To allow the mobile client to connect to your local server, you must expose it to the internet.
+    *(This assumes your GlassFish server is running on the default port `8080`)*
+    ```bash
+    ngrok http 8080
+    ```
+    This will generate a public URL (e.g., `https://xxxx.ngrok-free.app`). This URL is what you will use in the frontend application's configuration.
+
+<br/>
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](./LICENSE.md). See the `LICENSE.md` file for details.
