@@ -1,9 +1,9 @@
 # Chatterwave - API Server (Java)
 
 <p align="center">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg"/>
   <img alt="Language" src="https://img.shields.io/badge/Language-Java%20(EE7)-orange.svg?logo=java"/>
   <img alt="Database" src="https://img.shields.io/badge/Database-MySQL%208-blue.svg?logo=mysql"/>
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg"/>
 </p>
 
 This is the backend server for the **Chatterwave** chat application. It's built on the Java EE 7 platform and provides a complete RESTful API for all application functionalities, including user management, authentication, and messaging.
