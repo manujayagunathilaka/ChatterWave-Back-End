@@ -59,7 +59,7 @@ Follow these instructions to set up and run the backend server on your local mac
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/your-username/Chatterwave-Backend.git](https://github.com/manujayagunathilaka/Chatterwave-Backend.git)
+    git clone https://github.com/manujayagunathilaka/Chatterwave-Backend.git
     cd Chatterwave-Backend
     ```
 
